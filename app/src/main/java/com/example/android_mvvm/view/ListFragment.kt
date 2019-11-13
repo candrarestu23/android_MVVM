@@ -39,6 +39,13 @@ class ListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = dogListAdapter
         }
+        srList.setOnRefreshListener {
+            rvList.visibility = View.GONE
+            tvError.visibility = View.GONE
+            pbList.visibility = View.VISIBLE
+            viewModel.refresh()
+            srList.isRefreshing = false
+        }
         observeViewModel()
     }
 
