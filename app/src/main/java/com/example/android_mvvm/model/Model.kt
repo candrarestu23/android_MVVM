@@ -1,5 +1,6 @@
 package com.example.android_mvvm.model
 
+import android.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -37,3 +38,11 @@ data class DogBreed(
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
+
+data class DogPaallete(var color: Int)
+
+data class SmsInfo(
+    var to: String,
+    var text: String,
+    var imageUrl: String?
+)

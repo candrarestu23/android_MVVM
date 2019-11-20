@@ -3,16 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="dog"
+            type="com.example.android_mvvm.model.DogBreed" />
+        
+        <variable
+            name="pallete"
+            type="com.example.android_mvvm.model.DogPaallete" />
+    </data>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.DetailFragment">
+        tools:context=".view.DetailFragment"
+        android:background="@{pallete.color}">
         <ImageView
             android:id="@+id/ivItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_details_black_24dp"
+            android:imageUrl="@{dog.imageUrl}"
             android:minHeight="200dp"/>
         <TextView
             android:id="@+id/tvName"
@@ -22,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
             android:layout_below="@+id/ivItem"
-            tools:text="name"/>
+            android:text="@{dog.dogBreed}"/>
         <TextView
             android:id="@+id/tvPurpose"
             android:layout_width="wrap_content"
@@ -31,7 +41,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
             android:layout_below="@+id/tvName"
-            tools:text="Purpose"/>
+            android:text="@{dog.bredFor}"/>
         <TextView
             android:id="@+id/tvTemprament"
             android:layout_width="wrap_content"
@@ -40,7 +50,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
             android:layout_below="@+id/tvPurpose"
-            tools:text="Purpose"/>
+            android:text="@{dog.temperament}"/>
         <TextView
             android:id="@+id/tvLifeSpan"
             android:layout_width="wrap_content"
@@ -49,6 +59,6 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"
             android:layout_below="@+id/tvTemprament"
-            tools:text="Purpose"/>
+            android:text="@{dog.lifeSpan}"/>
     </RelativeLayout>
 </layout>

@@ -3,10 +3,8 @@ package com.example.android_mvvm.view
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -26,7 +24,7 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
@@ -43,7 +41,7 @@ class ListFragment : Fragment() {
             rvList.visibility = View.GONE
             tvError.visibility = View.GONE
             pbList.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.refreshBypassCache()
             srList.isRefreshing = false
         }
         observeViewModel()
@@ -73,5 +71,21 @@ class ListFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.actionSetting -> {
+                view?.let {
+                    Navigation.findNavController(it).navigate(ListFragmentDirections.actionSetting())
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
